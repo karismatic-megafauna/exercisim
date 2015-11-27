@@ -7,28 +7,28 @@ describe('Triangle', function() {
     expect(triangle.kind()).toEqual('equilateral');
   });
 
-  xit('larger equilateral triangles also have equal sides', function() {
+  it('larger equilateral triangles also have equal sides', function() {
     var triangle = new Triangle(10,10,10);
     expect(triangle.kind()).toEqual('equilateral');
   });
 
-  xit('isosceles triangles have last two sides equal', function() {
-    var triangle = new Triangle(3,4,4);
+  it('isosceles triangles have last two sides equal', function() {
+    var triangle = new Triangle(3, 4, 4);
     expect(triangle.kind()).toEqual('isosceles');
   });
 
   xit('isosceles trianges have first and last sides equal', function() {
-    var triangle = new Triangle(4,3,4);
+    var triangle = new Triangle(4, 3, 4);
     expect(triangle.kind()).toEqual('isosceles');
   });
 
   xit('isosceles triangles have two first sides equal', function() {
-    var triangle = new Triangle(4,4,3);
+    var triangle = new Triangle(4, 4, 3);
     expect(triangle.kind()).toEqual('isosceles');
   });
 
   xit('isosceles triangles have in fact exactly two sides equal', function() {
-    var triangle = new Triangle(10,10,2);
+    var triangle = new Triangle(10, 10, 2);
     expect(triangle.kind()).toEqual('isosceles');
   });
 
