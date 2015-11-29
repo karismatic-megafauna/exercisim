@@ -27,32 +27,32 @@ describe('Triangle', function() {
     expect(triangle.kind()).toEqual('isosceles');
   });
 
-  xit('isosceles triangles have in fact exactly two sides equal', function() {
+  it('isosceles triangles have in fact exactly two sides equal', function() {
     var triangle = new Triangle(10, 10, 2);
     expect(triangle.kind()).toEqual('isosceles');
   });
 
-  xit('scalene triangles have no equal sides', function() {
+  it('scalene triangles have no equal sides', function() {
     var triangle = new Triangle(3,4,5);
     expect(triangle.kind()).toEqual('scalene');
   });
 
-  xit('scalene triangles have no equal sides at a larger scale too', function() {
+  it('scalene triangles have no equal sides at a larger scale too', function() {
     var triangle = new Triangle(10,11,12);
     expect(triangle.kind()).toEqual('scalene');
   });
 
-  xit('scalene triangles have no equal sides in descending order either', function() {
+  it('scalene triangles have no equal sides in descending order either', function() {
     var triangle = new Triangle(5,4,2);
     expect(triangle.kind()).toEqual('scalene');
   });
 
-  xit('very small triangles are legal', function() {
+  it('very small triangles are legal', function() {
     var triangle = new Triangle(0.4,0.6,0.3);
     expect(triangle.kind()).toEqual('scalene');
   });
 
-  xit('test triangles with no size are illegal', function() {
+  it('test triangles with no size are illegal', function() {
     var triangle = new Triangle(0,0,0);
     expect(triangle.kind.bind(triangle)).toThrow();
   });
