@@ -1,5 +1,4 @@
 var Triangle = function(a, b, c) {
-  this.triangleType = 'na';
   this.a = a;
   this.b = b;
   this.c = c;
@@ -7,16 +6,14 @@ var Triangle = function(a, b, c) {
 
 Triangle.prototype.isEquilateral = function(){
   if(this.a === this.b && this.b === this.c){
-    this.triangleType = 'equilateral';
-    return this.triangleType;
+    return true;
   }
   return false;
 }
 
 Triangle.prototype.isScalene = function(){
   if(this.a !== this.b && this.b !== this.c){
-    this.triangleType = 'scalene';
-    return this.triangleType;
+    return true;
   }
   return false;
 }
@@ -25,7 +22,7 @@ Triangle.prototype.isIsosceles = function(){
   if (this.a !== this.b && this.b === this.c ||
       this.a !== this.b && this.a === this.c ||
       this.a !== this.c && this.a === this.b) {
-    this.triangleType = 'isosceles';
+    return true;
   }
   return false;
 }
