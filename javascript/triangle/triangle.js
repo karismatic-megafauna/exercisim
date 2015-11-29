@@ -25,7 +25,7 @@ Triangle.prototype.kind = function() {
 
   // Triangle Inequality
   if ( ab < this.c || bc < this.a || ac < this.b ) {
-    throw 'Violates Triangel Inequality';
+    throw 'Violates Triangle Inequality';
   }
 
   // Types of triangles 
