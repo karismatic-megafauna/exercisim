@@ -59,15 +59,14 @@ Triangle.prototype.isPositive = function(){
 
 
 Triangle.prototype.kind = function() {
-  // Make sure it is valid triangle
-  this.isPositive();
-  this.isValidTriangle();
-
-  // Check triangles
-  this.isEquilateral();
-  this.isScalene();
-  this.isIsosceles();
-  return this.triangleType;
+  var typeChecks = ['isEquilateral', 'isScalene', 'isIsoceles', 'isValidTriangle', 'isPositive'];
+  var type = typeChecks.reduce(
+    function(memo, isType){
+      memo = memo || this[isType]()
+    }.bind(this),
+    ''
+  );
+  return type;
 };
 
 module.exports = Triangle;
