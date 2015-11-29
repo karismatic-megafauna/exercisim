@@ -57,22 +57,22 @@ describe('Triangle', function() {
     expect(triangle.kind.bind(triangle)).toThrow();
   });
 
-  xit('triangles with negative sides are illegal', function() {
+  it('triangles with negative sides are illegal', function() {
     var triangle = new Triangle(3,4,-5);
     expect(triangle.kind.bind(triangle)).toThrow();
   });
 
-  xit('triangles violating triangle inequality are illegal', function() {
+  it('triangles violating triangle inequality are illegal', function() {
     var triangle = new Triangle(1,1,3);
     expect(triangle.kind.bind(triangle)).toThrow();
   });
 
-  xit('edge cases of triangle inequality are in fact legal', function() {
+  it('edge cases of triangle inequality are in fact legal', function() {
     var triangle = new Triangle(2,4,2);
     expect(triangle.kind.bind(triangle)).not.toThrow();
   });
 
-  xit('triangles violating triangle inequality are illegal 2', function() {
+  it('triangles violating triangle inequality are illegal 2', function() {
     var triangle = new Triangle(7,3,2);
     expect(triangle.kind.bind(triangle)).toThrow();
   });

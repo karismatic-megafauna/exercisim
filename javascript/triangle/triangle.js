@@ -5,11 +5,30 @@ var Triangle = function(a, b, c) {
 };
 
 Triangle.prototype.kind = function() {
-  var total = this.a + this.b + this.c;
-  console.log('\n a: ' + this.a);
-  console.log('\n b: ' + this.b);
-  console.log('\n c: ' + this.c);
-  console.log('\n total: ' + total);
+  var sides = [this.a, this.b, this.c];
+
+  var ab = this.a + this.b;
+  var bc = this.b + this.c;
+  var ac = this.a + this.c;
+  
+  // No negative numbers and total
+  var total = sides.reduce(function(mem, obj){
+    if (Math.sign(obj) === -1){
+      throw 'No negative numbers';
+    }
+    return mem + obj; 
+  });
+
+  if ( total === 0 ) {
+    throw 'Triangle should be greater than zero';
+  }
+
+  // Triangle Inequality
+  if ( ab < this.c || bc < this.a || ac < this.b ) {
+    throw 'Violates Triangel Inequality';
+  }
+
+  // Types of triangles 
   if ( this.a === this.b && this.b === this.c ) {
    return 'equilateral';
   } else if ( this.a !== this.b && this.b === this.c ) {
@@ -20,8 +39,8 @@ Triangle.prototype.kind = function() {
     return 'isosceles';
   } else if ( this.a !== this.c && this.a !== this.b ) {
     return 'scalene';
-  } else if ( total === 0 ) {
-    throw 'Triangle must be larger than 0';
+  } else {
+    throw 'Cool, you found a new type of triangle!';
   }
 };
 
