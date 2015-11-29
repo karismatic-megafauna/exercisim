@@ -1,8 +1,25 @@
 var Triangle = function(a, b, c) {
+  this.triangleType = 'na';
   this.a = a;
   this.b = b;
   this.c = c;
 };
+
+Triangle.prototype.isEquilateral = function(){
+  if(this.a === this.b && this.b === this.c){
+    this.triangleType = 'equilateral';
+    return this.triangleType;
+  }
+  return false;
+}
+
+Triangle.prototype.isScalene= function(){
+  if(this.a !== this.b && this.b !== this.c){
+    this.triangleType = 'scalene';
+    return this.triangleType;
+  }
+  return false;
+}
 
 Triangle.prototype.kind = function() {
   var sides = [this.a, this.b, this.c];
@@ -28,20 +45,18 @@ Triangle.prototype.kind = function() {
     throw 'Violates Triangle Inequality';
   }
 
-  // Types of triangles 
-  if ( this.a === this.b && this.b === this.c ) {
-   return 'equilateral';
-  } else if ( this.a !== this.b && this.b === this.c ) {
-    return 'isosceles';
+  // Check triangles
+  // order matters, i wonder if i can make that not a thing
+  this.isEquilateral();
+  this.isScalene();
+  if ( this.a !== this.b && this.b === this.c ) {
+    this.triangleType = 'isosceles';
   } else if ( this.a !== this.b && this.a === this.c ) {
-    return 'isosceles';
+    this.triangleType = 'isosceles';
   } else if ( this.a !== this.c && this.a === this.b ) {
-    return 'isosceles';
-  } else if ( this.a !== this.c && this.a !== this.b ) {
-    return 'scalene';
-  } else {
-    throw 'Cool, you found a new type of triangle!';
+    this.triangleType = 'isosceles';
   }
+  return this.triangleType;
 };
 
 module.exports = Triangle;
