@@ -4,27 +4,20 @@ var Triangle = function(a, b, c) {
   this.c = c;
 };
 
-Triangle.prototype.isEquilateral = function(){
-  if(this.a === this.b && this.b === this.c){
-    return true;
-  }
-  return false;
+Triangle.prototype.isEquilateral = function() {
+  return (this.a === this.b && this.b === this.c) ? 'equilateral' : false;
 }
 
 Triangle.prototype.isScalene = function(){
-  if(this.a !== this.b && this.b !== this.c){
-    return true;
-  }
-  return false;
+  return (this.a !== this.b && this.b !== this.c) ? 'scalene' : false;
 }
 
 Triangle.prototype.isIsosceles = function(){
-  if (this.a !== this.b && this.b === this.c ||
-      this.a !== this.b && this.a === this.c ||
-      this.a !== this.c && this.a === this.b) {
-    return true;
-  }
-  return false;
+  return (
+    this.a !== this.b && this.b === this.c ||
+    this.a !== this.b && this.a === this.c ||
+    this.a !== this.c && this.a === this.b
+  ) ? 'isosceles' : false;
 }
 
 Triangle.prototype.isValidTriangle = function(){
@@ -57,12 +50,19 @@ Triangle.prototype.isPositive = function(){
   return true;
 }
 
-
 Triangle.prototype.kind = function() {
-  var typeChecks = ['isEquilateral', 'isScalene', 'isIsoceles', 'isValidTriangle', 'isPositive'];
+
+  this.isValidTriangle();
+  this.isPositive();
+
+  var typeChecks = [
+    'isEquilateral',
+    'isIsosceles',
+    'isScalene',
+  ];
   var type = typeChecks.reduce(
-    function(memo, isType){
-      memo = memo || this[isType]()
+    function(memo, isType) {
+      return memo = memo || this[isType]()
     }.bind(this),
     ''
   );
