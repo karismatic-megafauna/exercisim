@@ -1,17 +1,26 @@
 var DnaTranscriber = function() {};
 
 DnaTranscriber.prototype.toRna = function(dna) {
-  // set up a map of values
-  rnaVals = {
-    'C': 'G'
-  }
-  // map through the string ( turn string into array )
-  return dna.split('').map(function(val) {
-    // compare val to rnaVals 
-  });
+  dnaToRna = {
+    'C': 'G',
+    'G': 'C',
+    'A': 'U',
+    'T': 'A',
+  };
+  return dna.split('').map(function(nucleotide) {
+    return dnaToRna[nucleotide];
+  }).join('');
 };
 
 DnaTranscriber.prototype.toDna = function(rna) {
-  // code
+  rnaToDna = {
+    'G': 'C',
+    'C': 'G',
+    'U': 'A',
+    'A': 'T',
+  }
+  return rna.split('').map(function(nucleotide) {
+    return rnaToDna[nucleotide];
+  }).join('');
 };
 module.exports = DnaTranscriber;
