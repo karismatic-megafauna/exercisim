@@ -11,14 +11,31 @@ var Bob = function() {};
 // empty string 
 
 Bob.prototype.hasLowerCase = function(str) {
-  (/[a-z]/.test(str)) ? true : false; 
+  return (/[a-z]/.test(str)) ? true : false; 
+}
+
+Bob.prototype.getPunctuationMark = function(str) {
+  return str.slice(-1);
+}
+
+Bob.prototype.onlyNumbers = function(str) {
+  if ( str.match(/\d+/g) ) {
+    return str.match(/\d+/g);
+  } else {
+    return [''];
+  }
 }
 
 Bob.prototype.hey = function(input) {
-//
-// YOUR CODE GOES HERE
-//
-  if (input) {
+  if ( this.getPunctuationMark(input) === '!' &&  this.hasLowerCase(input) === false) {
+    return 'Whoa, chill out!';
+  } else if ( this.onlyNumbers(input).length === (input.length) ) {
+    return 'Sure.';
+  } else if ( this.getPunctuationMark(input) === '?' && this.hasLowerCase(input) === false) {
+    return 'Whoa, chill out!';
+  } else if ( this.getPunctuationMark(input) === '?') {
+    return 'Sure.';
+  } else if (input) {
     return 'Whatever.';
   }
 };
