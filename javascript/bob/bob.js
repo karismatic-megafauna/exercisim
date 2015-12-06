@@ -29,8 +29,6 @@ Bob.prototype.onlyNumbers = function(str) {
 Bob.prototype.hey = function(input) {
   if ( this.getPunctuationMark(input) === '!' &&  this.hasLowerCase(input) === false) {
     return 'Whoa, chill out!';
-  } else if ( this.onlyNumbers(input).length === (input.length) ) {
-    return 'Sure.';
   } else if ( this.getPunctuationMark(input) === '?' && this.hasLowerCase(input) === false) {
     return 'Whoa, chill out!';
   } else if ( this.getPunctuationMark(input) === '?') {
