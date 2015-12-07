@@ -5,6 +5,8 @@ var Bob = function() {
 // what kind of punctuation does it have at the end? returns ( . ? ! )
 // does it have words that are all caps?
 
+// try coverting toUppperCase() instead of checking for lower case, this might
+// fix your weird issue with uuuuummmlots
 Bob.prototype.hasLowerCase = function(str) {
   return (/[a-z]/.test(str)) ? true : false;
 }
