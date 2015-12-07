@@ -43,7 +43,7 @@ describe('Bob', function() {
     expect(result).toEqual('Whatever.');
   });
 
-  xit('question with only numbers', function() {
+  it('question with only numbers', function() {
     var result = bob.hey('4?');
     expect(result).toEqual('Sure.');
   });
