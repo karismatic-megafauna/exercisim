@@ -14,23 +14,15 @@ Bob.prototype.getLastChar = function(str) {
 }
 
 Bob.prototype.hey = function(input) {
-  var question = 0;
-  var statement = 0;
-  var exclimation = 0;
   var isNumber = 0;
+  var silence = 0;
 
   input.split('').map(function(obj){
-    if (obj === '?'){
-      question = question + 1;
-    }
-    if (obj === '!'){
-      exclimation = exclimation + 1;
-    }
-    if ( obj === '.') {
-      statement = statement + 1;
+    if ( obj === ' ') {
+      silence++;
     }
     if ( /^\d+$/.test(obj) ) {
-      isNumber = isNumber + 1;
+      isNumber++;
     }
   });
 
@@ -42,9 +34,12 @@ Bob.prototype.hey = function(input) {
     return 'Whoa, chill out!';
   } else if ( this.getLastChar(input) === '?') {
     return 'Sure.';
+  } else if ( input.length === silence) {
+    return 'Fine. Be that way!';
   } else if (input) {
     return 'Whatever.';
   }
+
 };
 
 module.exports = Bob;
