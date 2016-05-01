@@ -6,22 +6,14 @@ class Squares
   end
 
   def square_of_sum
-    i = 0
     sum = 0
-    while i < @number do
-      i += 1
-      sum = sum + i
-    end
-    sum**2
+    1.upto(@number) { |n| sum += n }
+    sum **= 2
   end
 
   def sum_of_squares
-    i = 0
     sum = 0
-    while i < @number do
-      i += 1
-      sum += i**2
-    end
+    1.upto(@number) { |n| sum += n**2 }
     sum
   end
 
