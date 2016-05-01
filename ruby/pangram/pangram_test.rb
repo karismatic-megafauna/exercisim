@@ -2,6 +2,7 @@
 # encoding: utf-8
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
+require 'minitest/pride'
 require_relative 'pangram'
 
 # Test data version:
@@ -14,13 +15,11 @@ class PangramTest < Minitest::Test
   end
 
   def test_pangram_with_only_lower_case
-    skip
     str = 'the quick brown fox jumps over the lazy dog'
     assert Pangram.is_pangram?(str)
   end
 
   def test_missing_character_x
-    skip
     str = 'a quick movement of the enemy will jeopardize five gunboats'
     refute Pangram.is_pangram?(str)
   end
@@ -46,7 +45,6 @@ class PangramTest < Minitest::Test
   # If you are curious, read more about constants on RubyDoc:
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
   def test_bookkeeping
-    skip
     assert_equal 1, Pangram::VERSION
   end
 end
