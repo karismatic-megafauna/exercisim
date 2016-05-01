@@ -26,6 +26,6 @@ class Squares
   end
 
   def difference
-    Squares.new(@number).square_of_sum - Squares.new(@number).sum_of_squares
+    square_of_sum - sum_of_squares
   end
 end
