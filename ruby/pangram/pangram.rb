@@ -1,16 +1,16 @@
 class Pangram
   VERSION=1
   def self.is_pangram?(str)
-    if str == ''
-      return false
+    pStr = str.downcase.gsub(/[^a-z]/,'').chars.to_a.inject('') do |i, k|
+      unless i.include?(k)
+        i = i + k
+      end
+      i
     end
 
-    # TODO: strip non ascii
-    puts str.delete(' ').chars.to_a.inject { |i, k|
-      # TODO: check if i already has k
-      i = i + k
-    }
-    # TODO: check lenght
-
+    unless pStr.length == 26
+      return false
+    end
+    true
   end
 end
