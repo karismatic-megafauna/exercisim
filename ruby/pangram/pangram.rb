@@ -5,9 +5,12 @@ class Pangram
       return false
     end
 
-    puts str.delete(' ')
-    # str.strip.to_a.inject([]) { |i, k| puts i + '---' + k  }
-    # 26 different charachters
-    # remove any duplicates and non ascii
+    # TODO: strip non ascii
+    puts str.delete(' ').chars.to_a.inject { |i, k|
+      # TODO: check if i already has k
+      i = i + k
+    }
+    # TODO: check lenght
+
   end
 end
