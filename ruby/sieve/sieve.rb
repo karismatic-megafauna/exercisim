@@ -5,8 +5,6 @@ class Sieve
     @range= [*2..num]
   end
 
-  #  take the next available unmarked number in your list (it is prime)
-  #  mark all the multiples of that number (they are not prime)
   def primes
     if @num < 2
       return []
