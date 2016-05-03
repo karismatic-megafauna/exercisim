@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
+require 'minitest/pride'
 require_relative 'roman_numerals'
 
 # Test data version:
@@ -12,17 +13,14 @@ class RomanNumeralsTest < Minitest::Test
   end
 
   def test_2
-    skip
     assert_equal 'II', 2.to_roman
   end
 
   def test_3
-    skip
     assert_equal 'III', 3.to_roman
   end
 
   def test_4
-    skip
     assert_equal 'IV', 4.to_roman
   end
 
@@ -98,7 +96,6 @@ class RomanNumeralsTest < Minitest::Test
 
   # Don't forget to define a constant VERSION inside of Fixnum.
   def test_bookkeeping
-    skip
     assert_equal 1, Fixnum::VERSION
   end
 end
