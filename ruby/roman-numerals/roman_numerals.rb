@@ -1,47 +1,90 @@
 class Fixnum
   VERSION=1
   def to_roman
-    numeral=[]
     number=self
-    magnitude = Math.log10(number).floor
+    level = Math.log10(number).floor
+    makeNumerals(level, number)
+  end
 
-    if magnitude == 0
-      numeral.push(makeNumerals('I','V'))
-    elsif magnitude == 1
-      numeral.push(makeNumerals('X','L'))
-    elsif magnitude == 2
-      numeral.push(makeNumerals('C','D'))
-    elsif magnitude == 3
-      numeral.push(makeNumerals('M',''))
+  def makeOnes(num, char)
+    Array.new(num, char)
+  end
+
+  def makeFive(char)
+    Array.new(1, char)
+  end
+
+  def makeNumerals(level, base_num)
+    #base case
+    if level == -1
+      return
     end
+
+    numeral=[]
+    keys = setKeys(level)
+    high = keys[0]
+    low = keys[1]
+    number = base_num / 10**level
+
+    if number < 4
+      numeral.push(makeOnes(number % 5, low))
+    end
+    if number == 4
+      numeral.push(makeOnes(1, low))
+      numeral.push(makeFive(high))
+    end
+    if number % 5 == 0
+      numeral.push(makeFive(high))
+    end
+    if number == 6
+      numeral.push(makeFive(high))
+      numeral.push(makeOnes(1, low))
+    end
+    if number > 6
+      numeral.push(makeFive(high))
+      numeral.push(makeOnes(number % 5, low))
+    end
+
+    # recurse
+    level = level - 1
+    makeNumerals(level, base_num)
     numeral.join('')
   end
 
-  def makeNumerals(one, five)
-    Array.new(num, 'I')
+  def setKeys(level)
+    if level == 3
+      high = 'M'
+    elsif level == 2
+      high = 'D'
+      low= 'C'
+    elsif level == 1
+      high = 'L'
+      low= 'X'
+    elsif level == 0
+      high = 'V'
+      low= 'I'
+    end
+    [high, low]
   end
 end
 
-# IIII
-# IV
-
-## Get group
-# Math.log10(num).floor
-# this will return which level it is
-# use this to switch between IV XL and CD
-
-## rules
-# M = 1000
-##
-# D = 500
-# C = 100
-###
-# L 50
-# X = 10
-# ##
-# V = 5
-# I = 1
-# ##
-# left = minus
-# right = add
-
+## Algorithim for 575
+# let's romanize these numbers!
+# what level are you?
+#   level = Math.log(number).floor => 2
+# awesome, let's set your digits!
+#   romanize(level) => 2
+#  => high="D", low="C"
+# now, let's get you down to sigle digits
+#  number / 10**level => 5
+# great! what is that in realtion to 5?
+#  => 0
+# fantastic, this means we should print out just the high value!
+#   push.('D')
+# looks like we are done, let's decrease our counter
+#  => level - 1
+# now, let's see if you are done!
+#   romanize(level) => 1
+#  => high="L" low="X"
+# now, let's get you down to sigle digits
+#  number / 10**level => 
