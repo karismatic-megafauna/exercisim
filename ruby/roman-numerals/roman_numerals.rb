@@ -6,14 +6,6 @@ class Fixnum
     makeNumerals(level, number)
   end
 
-  def makeOnes(num, char)
-    Array.new(num, char)
-  end
-
-  def makeFive(char)
-    Array.new(1, char)
-  end
-
   def makeNumerals(level, base_num)
     #base case
     if level == -1
@@ -24,7 +16,7 @@ class Fixnum
     keys = setKeys(level)
     high = keys[0]
     low = keys[1]
-    number = base_num / 10**level
+    number = base_num % 5
 
     if number < 4
       numeral.push(makeOnes(number % 5, low))
@@ -33,16 +25,8 @@ class Fixnum
       numeral.push(makeOnes(1, low))
       numeral.push(makeFive(high))
     end
-    if number % 5 == 0
+    if number == 0
       numeral.push(makeFive(high))
-    end
-    if number == 6
-      numeral.push(makeFive(high))
-      numeral.push(makeOnes(1, low))
-    end
-    if number > 6
-      numeral.push(makeFive(high))
-      numeral.push(makeOnes(number % 5, low))
     end
 
     # recurse
@@ -66,25 +50,12 @@ class Fixnum
     end
     [high, low]
   end
-end
 
-## Algorithim for 575
-# let's romanize these numbers!
-# what level are you?
-#   level = Math.log(number).floor => 2
-# awesome, let's set your digits!
-#   romanize(level) => 2
-#  => high="D", low="C"
-# now, let's get you down to sigle digits
-#  number / 10**level => 5
-# great! what is that in realtion to 5?
-#  => 0
-# fantastic, this means we should print out just the high value!
-#   push.('D')
-# looks like we are done, let's decrease our counter
-#  => level - 1
-# now, let's see if you are done!
-#   romanize(level) => 1
-#  => high="L" low="X"
-# now, let's get you down to sigle digits
-#  number / 10**level => 
+  def makeOnes(num, char)
+    Array.new(num, char)
+  end
+
+  def makeFive(char)
+    Array.new(1, char)
+  end
+end
