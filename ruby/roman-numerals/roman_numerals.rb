@@ -13,11 +13,9 @@ class Fixnum
     end
 
     numeral=[]
-    number = base_num.to_s.chars[level].to_i
+    number = base_num.to_s.chars.reverse[level].to_i
 
-    if number == 0
-      numeral.push(makeOnes(1, level))
-    elsif number < 5
+    if number < 5
       if number % 5 < 4
         numeral.push(makeOnes(number % 5, level))
       end
@@ -46,7 +44,7 @@ class Fixnum
 
   def setKeys(level)
     if level == 3
-      high = 'M'
+      low = 'M'
     elsif level == 2
       high = 'D'
       low= 'C'
