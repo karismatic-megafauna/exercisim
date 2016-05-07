@@ -13,39 +13,35 @@ class Fixnum
     end
 
     numeral=[]
-    keys = setKeys(level)
-    high = keys[0]
-    low = keys[1]
-    # number = base_num % 5
     number = base_num.to_s.chars[level].to_i
-    # puts high
-    # puts number
 
-    if number < 5 && number % 5 < 4
-      numeral.push(makeOnes(number % 5, low))
-    end
-    if number > 5 && number % 5 != 4
-      numeral.push(makeFive(high))
-    end
-    if number > 5 && number % 5 < 4
-      numeral.push(makeOnes(number % 5, low))
-    end
-    if number < 5 && number % 5 == 4
-      numeral.push(makeOnes(1, low))
-      numeral.push(makeFive(high))
-    end
-    if number > 5 && number % 5 == 4
-      numeral.push(makeFive(high))
-      numeral.push(makeOnes(1, low))
-    end
-    if number == 5
-      numeral.push(makeFive(high))
+    if number == 0
+      numeral.push(makeOnes(1, level))
+    elsif number < 5
+      if number % 5 < 4
+        numeral.push(makeOnes(number % 5, level))
+      end
+      if number % 5 == 4
+        numeral.push(makeOnes(1, level))
+        numeral.push(makeFive(level))
+      end
+    elsif number > 5
+      if number % 5 < 4
+        numeral.push(makeFive(level))
+        numeral.push(makeOnes(number % 5, level))
+      end
+      if number % 5 == 4
+        numeral.push(makeOnes(1, level))
+        numeral.push(makeOnes(1, level+1))
+      end
+    elsif number == 5
+      numeral.push(makeFive(level))
     end
 
     # recurse
     level = level - 1
-    temp = makeNumerals(level, base_num)
-    numeral + temp
+    prev = makeNumerals(level, base_num)
+    numeral + prev
   end
 
   def setKeys(level)
@@ -64,11 +60,13 @@ class Fixnum
     [high, low]
   end
 
-  def makeOnes(num, char)
-    Array.new(num, char)
+  def makeOnes(num, level)
+    char = setKeys(level)
+    Array.new(num, char[1])
   end
 
-  def makeFive(char)
-    Array.new(1, char)
+  def makeFive(level)
+    char = setKeys(level)
+    Array.new(1, char[0])
   end
 end
