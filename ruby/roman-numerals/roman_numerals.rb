@@ -3,36 +3,49 @@ class Fixnum
   def to_roman
     number=self
     level = Math.log10(number).floor
-    makeNumerals(level, number)
+    makeNumerals(level, number).join('')
   end
 
   def makeNumerals(level, base_num)
     #base case
     if level == -1
-      return
+      return []
     end
 
     numeral=[]
     keys = setKeys(level)
     high = keys[0]
     low = keys[1]
-    number = base_num % 5
+    # number = base_num % 5
+    number = base_num.to_s.chars[level].to_i
+    # puts high
+    # puts number
 
-    if number < 4
+    if number < 5 && number % 5 < 4
       numeral.push(makeOnes(number % 5, low))
     end
-    if number == 4
+    if number > 5 && number % 5 != 4
+      numeral.push(makeFive(high))
+    end
+    if number > 5 && number % 5 < 4
+      numeral.push(makeOnes(number % 5, low))
+    end
+    if number < 5 && number % 5 == 4
       numeral.push(makeOnes(1, low))
       numeral.push(makeFive(high))
     end
-    if number == 0
+    if number > 5 && number % 5 == 4
+      numeral.push(makeFive(high))
+      numeral.push(makeOnes(1, low))
+    end
+    if number == 5
       numeral.push(makeFive(high))
     end
 
     # recurse
     level = level - 1
-    makeNumerals(level, base_num)
-    numeral.join('')
+    temp = makeNumerals(level, base_num)
+    numeral + temp
   end
 
   def setKeys(level)

@@ -45,7 +45,6 @@ class RomanNumeralsTest < Minitest::Test
   end
 
   def test_10
-    skip
     assert_equal 'X', 10.to_roman
   end
 
