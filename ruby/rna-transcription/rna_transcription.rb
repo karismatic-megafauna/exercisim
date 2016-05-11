@@ -2,7 +2,7 @@ class Complement
   VERSION=3
   def self.of_dna(str)
     result=''
-    str.chars.to_a.map do |char|
+    str.chars.map do |char|
       if char == 'C'
         result += 'G'
       elsif char == 'G'
