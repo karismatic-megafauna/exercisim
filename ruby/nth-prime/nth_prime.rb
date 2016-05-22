@@ -1,6 +1,10 @@
 require 'pry'
 class Prime
   def nth(primeIndex)
+    if primeIndex == 0
+      throw ArgumentError
+    end
+
     agg = 2
     primeList = []
     while primeList.length < primeIndex do
@@ -11,8 +15,6 @@ class Prime
         agg += 1
       end
     end
-
-    puts primeList
     primeList.last
   end
 
@@ -21,8 +23,9 @@ class Prime
     isNotPrime = 0
 
     while isPrime < 4 && isNotPrime < 4 do
-      a = rand(2..(num))
-      if (((a**num) % num) == (a % num))
+      a = rand(1..(num-1))
+      b = a**(num-1)
+      if (b % num == 1)
         isPrime += 1
       else
         isNotPrime += 1
